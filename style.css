@@ -1,0 +1,97 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.screen {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 500px;
+}
+
+.screen.active {
+    display: block;
+}
+
+h1 {
+    color: #333;
+}
+
+.btn {
+    background-color: #a8dadc;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #457b9d;
+    color: #fff;
+}
+
+.btn-grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-grid button {
+    margin: 5px 0;
+}
+
+.score {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
+    background-color: #ffe066;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+input[type="text"] {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    width: 80%;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background-color: #f1faee;
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.senac-logo {
+    width: 150px;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.question-image {
+    width: 200px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
