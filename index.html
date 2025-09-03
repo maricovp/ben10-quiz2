@@ -9,9 +9,12 @@
 <body>
     <!-- Tela de início -->
     <div id="start-screen" class="screen active">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Senac_logo.svg/1200px-Senac_logo.svg.png" alt="Logo do SENAC" class="senac-logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Senac_logo.svg/1200px-Senac_logo.svg.png" 
+            alt="Logo do SENAC" class="senac-logo">
         <h1>Bem-vindo ao Quiz dos Aliens do Ben 10!</h1>
         <button id="start-btn" class="btn">Iniciar</button>
+        <br>
+        <a href="ranking.html" class="btn">Ver Ranking</a>
     </div>
 
     <!-- Tela do quiz -->
@@ -26,17 +29,18 @@
 
     <!-- Tela final -->
     <div id="end-screen" class="screen">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Senac_logo.svg/1200px-Senac_logo.svg.png" alt="Logo do SENAC" class="senac-logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Senac_logo.svg/1200px-Senac_logo.svg.png"
+            alt="Logo do SENAC" class="senac-logo">
         <h1 id="end-message">Fim de jogo!</h1>
         <p>Sua pontuação: <span id="final-score"></span></p>
         <input type="text" id="player-name" placeholder="Digite seu nome">
         <button id="submit-btn" class="btn">Enviar pontuação</button>
-        <h2>Ranking</h2>
-        <ul id="ranking-list"></ul>
     </div>
-        <!-- Sons -->
-        <audio id="correct-sound" src="songs/correct.mp3"></audio>
-        <audio id="wrong-sound" src="songs/errado.mp3"></audio>
+
+    <!-- Sons -->
+    <audio id="correct-sound" src="songs/correct.mp3"></audio>
+    <audio id="wrong-sound" src="songs/errado.mp3"></audio>
+
 
     <script src="script.js"></script>
 </body>

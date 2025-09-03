@@ -9,7 +9,6 @@ const answerButtons = document.getElementById("answer-buttons");
 const scoreElement = document.getElementById("score");
 const finalScoreElement = document.getElementById("final-score");
 const playerNameInput = document.getElementById("player-name");
-const rankingList = document.getElementById("ranking-list");
 const correctSound = document.getElementById("correct-sound");
 const wrongSound = document.getElementById("wrong-sound");
 
@@ -66,7 +65,7 @@ let questions = [
     ],
   },
   {
-    question: "Qual alien do Ben  tem capacidade de atravessar paredes?",
+    question: "Qual alien do Ben tem capacidade de atravessar paredes?",
     image:
       "https://pm1.aminoapps.com/7819/b7b5251ae4706185fa46d374ec0f8613ae25c5dar1-1788-1754v2_hq.jpg",
     answers: [
@@ -147,7 +146,6 @@ function showQuestion() {
   questionImage.src = currentQuestion.image;
   questionImage.alt = currentQuestion.question;
 
-  // Embaralhar respostas
   const shuffledAnswers = currentQuestion.answers.sort(
     () => Math.random() - 0.5
   );
@@ -181,25 +179,29 @@ function selectAnswer(e) {
 
   scoreElement.innerText = score;
   currentQuestionIndex++;
-  setTimeout(showQuestion, 800); // espera 0.8s para tocar o som
+  setTimeout(showQuestion, 800);
 }
 
 function endGame() {
   quizScreen.classList.remove("active");
   endScreen.classList.add("active");
   finalScoreElement.innerText = score;
-  document.getElementById("end-message").innerText =
-    score > 0 ? "Parabéns, você venceu!" : "Você perdeu!";
+
+  if (score === questions.length * 10) {
+    document.getElementById("end-message").innerText = "Você venceu!";
+  } else {
+    document.getElementById("end-message").innerText = "Fim de jogo!";
+  }
 }
 
 function submitScoreAndRestart() {
   const name = playerNameInput.value || "Jogador";
-  const li = document.createElement("li");
-  li.innerText = `${name}: ${score} pontos`;
-  rankingList.appendChild(li);
+  const ranking = JSON.parse(localStorage.getItem("ranking")) || [];
+  ranking.push({ name, score });
+  localStorage.setItem("ranking", JSON.stringify(ranking));
+
   playerNameInput.value = "";
 
-  // Reiniciar o jogo
   endScreen.classList.remove("active");
   startScreen.classList.add("active");
 }
