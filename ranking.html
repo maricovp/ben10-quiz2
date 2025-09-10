@@ -1,31 +1,62 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ranking - Quiz Ben 10</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ranking - Quiz Ben 10</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="screen active">
-        <h1>Ranking</h1>
-        <ul id="ranking-list"></ul>
-        <a href="index.html" class="btn">Voltar ao Início</a>
-    </div>
 
-    <script>
-        // Carrega ranking do localStorage
-        const rankingList = document.getElementById("ranking-list");
-        const ranking = JSON.parse(localStorage.getItem("ranking")) || [];
+<div class="screen active">
+  <h1>Ranking</h1>
+  <p>Escolha o nível:</p>
+  <button class="btn ranking-level-btn" data-level="1">Nível 1</button>
+  <button class="btn ranking-level-btn" data-level="2">Nível 2</button>
+  <button class="btn ranking-level-btn" data-level="3">Nível 3</button>
+  <ul id="ranking-list"></ul>
+  <button id="clear-ranking" class="btn">Limpar Ranking</button>
+  <a href="index.html" class="btn">Voltar ao Início</a>
+</div>
 
-        // Ordena do maior para o menor
-        ranking.sort((a, b) => b.score - a.score);
+<script>
+const rankingList = document.getElementById("ranking-list");
+const rankingButtons = document.querySelectorAll(".ranking-level-btn");
+const clearBtn = document.getElementById("clear-ranking");
 
-        ranking.forEach(player => {
-            const li = document.createElement("li");
-            li.innerText = `${player.name}: ${player.score} pontos`;
-            rankingList.appendChild(li);
-        });
-    </script>
+function showRanking(level) {
+  rankingList.innerHTML = "";
+  const ranking = JSON.parse(localStorage.getItem(`ranking${level}`)) || [];
+  if (ranking.length === 0) {
+    const li = document.createElement("li");
+    li.innerText = "Ainda não há nenhum ranking salvo.";
+    rankingList.appendChild(li);
+    return;
+  }
+  ranking.sort((a, b) => b.score - a.score);
+  ranking.forEach(player => {
+    const li = document.createElement("li");
+    li.innerText = `${player.name}: ${player.score} pontos`;
+    rankingList.appendChild(li);
+  });
+}
+
+rankingButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    showRanking(btn.dataset.level);
+  });
+});
+
+clearBtn.addEventListener("click", () => {
+  if(confirm("Deseja realmente limpar todos os rankings?")) {
+    for(let i=1; i<=3; i++) localStorage.removeItem(`ranking${i}`);
+    rankingList.innerHTML = "";
+    const li = document.createElement("li");
+    li.innerText = "Ranking limpo!";
+    rankingList.appendChild(li);
+  }
+});
+</script>
+
 </body>
 </html>

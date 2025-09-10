@@ -6,10 +6,8 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-}
-
-/* Estrutura das telas */
-.screen {
+  }
+  .screen {
     display: none;
     text-align: center;
     padding: 20px;
@@ -18,18 +16,10 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     width: 90%;
     max-width: 500px;
-}
-
-.screen.active {
-    display: block;
-}
-
-h1, h2 {
-    color: #333;
-}
-
-/* Botões */
-.btn {
+  }
+  .screen.active { display: block; }
+  h1, h2, h3 { color: #333; }
+  .btn {
     background-color: #a8dadc;
     border: none;
     padding: 10px 20px;
@@ -38,73 +28,17 @@ h1, h2 {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
-    display: inline-block;
-    text-decoration: none; /* remove sublinhado em links */
     color: #000;
-}
-
-.btn:hover {
-    background-color: #457b9d;
-    color: #fff;
-}
-
-/* Layout das respostas */
-.btn-grid {
-    display: flex;
-    flex-direction: column;
-}
-
-.btn-grid button {
-    margin: 5px 0;
-}
-
-/* Pontuação */
-.score {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 18px;
-    background-color: #ffe066;
-    padding: 5px 10px;
-    border-radius: 8px;
-}
-
-/* Input de nome */
-input[type="text"] {
-    padding: 8px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-    width: 80%;
-}
-
-/* Ranking */
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-li {
-    background-color: #f1faee;
-    margin: 5px 0;
-    padding: 8px;
-    border-radius: 8px;
-    font-weight: bold;
-}
-
-/* Logo SENAC */
-.senac-logo {
-    width: 150px;
-    margin-bottom: 20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Imagem da pergunta */
-.question-image {
-    width: 200px;
-    margin: 10px 0;
-    border-radius: 10px;
-}
+    text-decoration: none;
+  }
+  .btn:hover { background-color: #457b9d; color: #fff; }
+  .btn-grid { display: flex; flex-direction: column; }
+  .btn-grid button { margin: 5px 0; }
+  .score { position: absolute; top: 20px; right: 20px; font-size: 18px; background-color: #ffe066; padding: 5px 10px; border-radius: 8px; }
+  .timer { position: absolute; top: 20px; left: 20px; font-size: 18px; background-color: #ff6b6b; padding: 5px 10px; border-radius: 8px; color: #fff; }
+  input[type="text"] { padding: 8px; border-radius: 8px; border: 1px solid #ccc; margin-bottom: 10px; width: 80%; }
+  ul { list-style: none; padding: 0; margin: 0; }
+  li { background-color: #f1faee; margin: 5px 0; padding: 8px; border-radius: 8px; font-weight: bold; }
+  .senac-logo { width: 150px; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto; }
+  .question-image { width: 200px; margin: 10px 0; border-radius: 10px; }
+  
