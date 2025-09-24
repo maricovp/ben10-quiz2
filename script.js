@@ -2,7 +2,7 @@
 const startScreen = document.getElementById("start-screen");
 const quizScreen = document.getElementById("quiz-screen");
 const endScreen = document.getElementById("end-screen");
-const startBtns = document.querySelectorAll(".level-btn");
+const startBtn = document.getElementById("start-btn");
 const questionElement = document.getElementById("question");
 const questionImage = document.getElementById("question-image");
 const answerButtons = document.getElementById("answer-buttons");
@@ -13,6 +13,7 @@ const submitBtn = document.getElementById("submit-btn");
 const correctSound = document.getElementById("correct-sound");
 const wrongSound = document.getElementById("wrong-sound");
 const timerElement = document.getElementById("time");
+const lifeElement = document.getElementById("life-count");
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -20,8 +21,8 @@ let level = 1;
 let questions = [];
 let timer;
 let timeLeft = 60;
+let lives = 2;
 
-// Níveis de perguntas
 const questionsLevel1 = [
   {
     question:
@@ -34,6 +35,11 @@ const questionsLevel1 = [
       { text: "Fogo-Fátuo", correct: false },
       { text: "Diamante", correct: false },
     ],
+    imageStyle: {
+      width: "400px",
+      border: "2px solid black",
+      borderRadius: "10px",
+    }, // Estilo da imagem
   },
   {
     question:
@@ -46,6 +52,11 @@ const questionsLevel1 = [
       { text: "Eco Eco", correct: false },
       { text: "Insectóide", correct: false },
     ],
+    imageStyle: {
+      width: "400px",
+      border: "2px solid black",
+      borderRadius: "10px",
+    },
   },
   {
     question:
@@ -58,6 +69,11 @@ const questionsLevel1 = [
       { text: "Eco Eco", correct: false },
       { text: "XLR8", correct: false },
     ],
+    imageStyle: {
+      width: "400px",
+      border: "2px solid black",
+      borderRadius: "10px",
+    },
   },
   {
     question:
@@ -70,6 +86,11 @@ const questionsLevel1 = [
       { text: "Chama", correct: false },
       { text: "Insectóide", correct: false },
     ],
+    imageStyle: {
+      width: "400px",
+      border: "2px solid black",
+      borderRadius: "10px",
+    },
   },
   {
     question: "Qual alien do Ben tem capacidade de atravessar paredes?",
@@ -81,6 +102,11 @@ const questionsLevel1 = [
       { text: "Eco Eco", correct: false },
       { text: "Quatro Braços", correct: false },
     ],
+    imageStyle: {
+      width: "400px",
+      border: "2px solid black",
+      borderRadius: "10px",
+    },
   },
   {
     question: "Qual alien do Ben tem habilidades de fogo e pode lançar chamas?",
@@ -92,6 +118,11 @@ const questionsLevel1 = [
       { text: "Diamante", correct: false },
       { text: "Eco Eco", correct: false },
     ],
+    imageStyle: {
+      width: "400px",
+      border: "2px solid black",
+      borderRadius: "10px",
+    },
   },
   {
     question: "Qual alien do Ben consegue emitir ondas sonoras poderosas?",
@@ -103,6 +134,11 @@ const questionsLevel1 = [
       { text: "Quatro Braços", correct: false },
       { text: "XLR8", correct: false },
     ],
+    imageStyle: {
+      width: "400px",
+      border: "2px solid black",
+      borderRadius: "10px",
+    },
   },
   {
     question:
@@ -115,6 +151,11 @@ const questionsLevel1 = [
       { text: "Chama", correct: false },
       { text: "Eco Eco", correct: false },
     ],
+    imageStyle: {
+      width: "400px",
+      border: "2px solid black",
+      borderRadius: "10px",
+    },
   },
   {
     question:
@@ -127,6 +168,11 @@ const questionsLevel1 = [
       { text: "Fogo-Fátuo", correct: false },
       { text: "XLR8", correct: false },
     ],
+    imageStyle: {
+      width: "400px",
+      border: "2px solid black",
+      borderRadius: "10px",
+    },
   },
 ];
 
@@ -140,6 +186,11 @@ const questionsLevel2 = [
       { text: "Rook Blonko", correct: true },
       { text: "Max Tennyson", correct: false },
     ],
+    imageStyle: {
+      width: "400px",
+      border: "2px solid black",
+      borderRadius: "10px",
+    },
   },
   {
     question: "Quantos anos Ben tem no início de Omniverse?",
@@ -150,6 +201,11 @@ const questionsLevel2 = [
       { text: "16", correct: true },
       { text: "11", correct: false },
     ],
+    imageStyle: {
+      width: "400px",
+      border: "2px solid black",
+      borderRadius: "10px",
+    },
   },
   {
     question: "Quem é o vilão principal nas primeiras temporadas?",
@@ -160,6 +216,11 @@ const questionsLevel2 = [
       { text: "Khyber", correct: false },
       { text: "Albedo", correct: false },
     ],
+    imageStyle: {
+      width: "400px",
+      border: "2px solid black",
+      borderRadius: "10px",
+    },
   },
   {
     question: "Qual é o nome da cidade natal de Ben?",
@@ -170,6 +231,11 @@ const questionsLevel2 = [
       { text: "Gotham", correct: false },
       { text: "Elmore", correct: false },
     ],
+    imageStyle: {
+      width: "400px",
+      border: "2px solid black",
+      borderRadius: "10px",
+    },
   },
   {
     question: "Qual alien de Ben é feito de blocos que se reorganizam?",
@@ -180,6 +246,11 @@ const questionsLevel2 = [
       { text: "Bloxx", correct: true },
       { text: "Feedback", correct: false },
     ],
+    imageStyle: {
+      width: "400px",
+      border: "2px solid black",
+      borderRadius: "10px",
+    },
   },
   {
     question: "Quem criou o Omnitrix?",
@@ -190,6 +261,11 @@ const questionsLevel2 = [
       { text: "Paradox", correct: false },
       { text: "Max Tennyson", correct: false },
     ],
+    imageStyle: {
+      width: "400px",
+      border: "2px solid black",
+      borderRadius: "10px",
+    },
   },
   {
     question: "O que diferencia o visual do Ben adolescente?",
@@ -200,6 +276,11 @@ const questionsLevel2 = [
       { text: "Cabelo espetado e jaqueta preta e verde", correct: true },
       { text: "Usa um boné vermelho", correct: false },
     ],
+    imageStyle: {
+      width: "400px",
+      border: "2px solid black",
+      borderRadius: "10px",
+    },
   },
   {
     question: "Quem é o encanador que orienta Ben e Rook?",
@@ -210,6 +291,11 @@ const questionsLevel2 = [
       { text: "Magister Patelliday", correct: true },
       { text: "Cooper", correct: false },
     ],
+    imageStyle: {
+      width: "400px",
+      border: "2px solid black",
+      borderRadius: "10px",
+    },
   },
   {
     question: "Qual organização inimiga aparece com frequência?",
@@ -220,6 +306,11 @@ const questionsLevel2 = [
       { text: "Galvans", correct: false },
       { text: "Plumbers", correct: false },
     ],
+    imageStyle: {
+      width: "400px",
+      border: "2px solid black",
+      borderRadius: "10px",
+    },
   },
   {
     question: "Quem é Malware e qual sua relação com o Omnitrix?",
@@ -233,10 +324,33 @@ const questionsLevel2 = [
       },
       { text: "Um humano que ajudou a criar o Omnitrix", correct: false },
     ],
+    imageStyle: {
+      width: "400px",
+      border: "2px solid black",
+      borderRadius: "10px",
+    },
   },
 ];
+// Função para criar e exibir o toast
+function showToast(message) {
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.innerText = message;
+  document.body.appendChild(toast);
 
-// Nível 3 (similar, com placeholder para imagens)
+  // Força o reflow para aplicar a animação
+  setTimeout(() => {
+    toast.classList.add("show");
+  }, 100);
+
+  // Remover depois de 3s
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 500);
+  }, 3000);
+}
+
+// Perguntas do nível 3
 const questionsLevel3 = [
   {
     question: "Quantos anos Ben tem em Força Alienígena?",
@@ -338,28 +452,44 @@ const questionsLevel3 = [
     ],
   },
 ];
+// Função toast
+function showToast(message, color = "#333") {
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.innerText = message;
+  toast.style.backgroundColor = color;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.classList.add("show"), 100);
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 500);
+  }, 3000);
+}
 
 // Eventos
-startBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    level = parseInt(btn.dataset.level);
-    if (level === 1) questions = [...questionsLevel1];
-    else if (level === 2) questions = [...questionsLevel2];
-    else questions = [...questionsLevel3];
-    startGame();
-  });
+startBtn.addEventListener("click", () => {
+  level = 1;
+  score = 0;
+  lives = 2;
+  startGame();
 });
 
 submitBtn.addEventListener("click", submitScoreAndRestart);
 
-// Funções
+// Funções principais
 function startGame() {
   startScreen.classList.remove("active");
   quizScreen.classList.add("active");
   currentQuestionIndex = 0;
-  score = 0;
   scoreElement.innerText = score;
   timeLeft = 60;
+  lives = 2;
+  lifeElement.innerText = lives;
+
+  if (level === 1) questions = [...questionsLevel1];
+  else if (level === 2) questions = [...questionsLevel2];
+  else questions = [...questionsLevel3];
+
   showQuestion();
   startTimer();
 }
@@ -371,7 +501,7 @@ function startTimer() {
     timerElement.innerText = timeLeft;
     if (timeLeft <= 0) {
       clearInterval(timer);
-      selectAnswer(null); // considera erro
+      loseLife();
     }
   }, 1000);
 }
@@ -379,7 +509,7 @@ function startTimer() {
 function showQuestion() {
   resetState();
   if (currentQuestionIndex >= questions.length) {
-    endGame();
+    nextLevel();
     return;
   }
   const currentQuestion = questions[currentQuestionIndex];
@@ -387,7 +517,6 @@ function showQuestion() {
   questionImage.src = currentQuestion.image;
   questionImage.alt = currentQuestion.question;
 
-  // Embaralhar respostas
   const shuffledAnswers = currentQuestion.answers.sort(
     () => Math.random() - 0.5
   );
@@ -409,42 +538,73 @@ function resetState() {
 
 function selectAnswer(e) {
   clearInterval(timer);
-  let correct = false;
-  if (e) correct = e.target.dataset.correct === "true";
+  let correct = e.target.dataset.correct === "true";
   if (correct) {
     score += 10;
-    correctSound.currentTime = 0;
     correctSound.play();
+    showToast("✅ Resposta correta!", "#4CAF50");
   } else {
-    wrongSound.currentTime = 0;
     wrongSound.play();
+    showToast("❌ Resposta errada!", "#f44336");
+    loseLife();
+    return;
   }
   scoreElement.innerText = score;
   currentQuestionIndex++;
-  setTimeout(showQuestion, 800);
-  startTimer();
+  setTimeout(() => {
+    showQuestion();
+    startTimer();
+  }, 800);
+}
+
+function loseLife() {
+  lives--;
+  lifeElement.innerText = lives;
+  if (lives <= 0) {
+    showToast("💀 Você perdeu todas as vidas!", "#f44336");
+    endGame();
+  } else {
+    currentQuestionIndex++;
+    showQuestion();
+    startTimer();
+  }
+}
+
+function nextLevel() {
+  if (level < 3) {
+    level++;
+    lives = 2;
+    lifeElement.innerText = lives;
+    currentQuestionIndex = 0;
+    if (level === 2) questions = [...questionsLevel2];
+    else questions = [...questionsLevel3];
+    showToast(`🎉 Parabéns! Avançando para o nível ${level}`, "#2196F3");
+    showQuestion();
+    startTimer();
+  } else {
+    endGame();
+  }
 }
 
 function endGame() {
   quizScreen.classList.remove("active");
   endScreen.classList.add("active");
   finalScoreElement.innerText = score;
-  if (score === questions.length * 10)
-    document.getElementById("end-message").innerText = "Você venceu!";
-  else document.getElementById("end-message").innerText = "Fim de jogo!";
+  document.getElementById("end-message").innerText =
+    score > 0 ? "Fim do jogo! Você chegou até o fim!" : "Fim de jogo!";
 }
 
 function submitScoreAndRestart() {
   const name = playerNameInput.value.trim();
   if (name === "") {
-    alert("Você precisa digitar seu nome para enviar a pontuação!");
+    showToast("⚠️ Digite seu nome para enviar a pontuação!", "#ff9800");
     return;
   }
-  const rankingKey = `ranking${level}`;
-  const ranking = JSON.parse(localStorage.getItem(rankingKey)) || [];
+  const ranking = JSON.parse(localStorage.getItem("rankingTotal")) || [];
   ranking.push({ name, score });
-  localStorage.setItem(rankingKey, JSON.stringify(ranking));
+  localStorage.setItem("rankingTotal", JSON.stringify(ranking));
   playerNameInput.value = "";
   endScreen.classList.remove("active");
   startScreen.classList.add("active");
+  showToast("🏆 Pontuação enviada com sucesso!", "#4CAF50");
 }
